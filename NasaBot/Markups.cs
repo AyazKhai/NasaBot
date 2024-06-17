@@ -44,7 +44,7 @@ namespace NasaBot
             //},
             new []
             {
-                InlineKeyboardButton.WithCallbackData("Go Back", "/start")
+                InlineKeyboardButton.WithCallbackData("Назад", "/start")
             }
         });
         }
@@ -60,7 +60,7 @@ namespace NasaBot
             // Добавляем кнопку "Go Back"
             buttons.Add(new[]
             {
-                InlineKeyboardButton.WithCallbackData("Go Back", "/start")
+                InlineKeyboardButton.WithCallbackData("Назад", "/donate")
             });
 
             return new InlineKeyboardMarkup(buttons);

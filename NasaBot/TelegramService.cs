@@ -18,7 +18,7 @@ namespace NasaBot
         private readonly ITelegramBotClient _botClient;
         private readonly NasaService _nasaService;
         private readonly AppDbContext _nasaDB;
-        int[] prices = { 1,5,10, 100, 150,500 };
+        int[] prices = {5,100, 150,500, 750};
 
         public TelegramService(ITelegramBotClient botClient, NasaService nasaService, AppDbContext nasaDB, HttpClient httpClient)
         {
@@ -89,6 +89,7 @@ namespace NasaBot
                 if (message.SuccessfulPayment != null)
                 {
                     await botClient.SendTextMessageAsync(message.Chat.Id, "Спасибо за ваше пожертвование! 🙏 Ваш вклад не напрасен — все средства пойдут на поддержку моего проекта и реализацию новых идей!💗", cancellationToken: cancellationToken);
+                    await SendStartMessage(message.Chat.Id);
                     return; // Выходим из метода, так как успешная оплата уже обработана
                 }
 
@@ -311,7 +312,7 @@ namespace NasaBot
                     await _botClient.EditMessageTextAsync(
                     chatId: chatId,
                     messageId: message.MessageId,
-                    text: "Слегодняшнее фото NASA"
+                    text: "Сегодняшнее фото NASA"
                     );
 
                     Message messa = await _botClient.SendPhotoAsync(
@@ -356,7 +357,7 @@ namespace NasaBot
                         await _botClient.EditMessageTextAsync(
                      chatId: chatId,
                      messageId: message.MessageId,
-                     text: "Ошибка сервера"
+                     text: "Фото дня пока недоступно"
                      );
                     }
                     static string[] SplitCaption(string caption, int maxLength)

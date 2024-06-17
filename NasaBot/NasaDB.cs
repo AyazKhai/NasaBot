@@ -12,7 +12,6 @@ namespace NasaBot
     public class AppDbContext : DbContext
     {
         public DbSet<Nasa> Nasas { get; set; }
-
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
